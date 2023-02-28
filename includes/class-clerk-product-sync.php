@@ -532,7 +532,7 @@ class Clerk_Product_Sync {
 
 									$attribute = $attribute_field;
 
-									if ( is_array( $atribute ) && count( $atribute ) > 0 ) {
+									if ( is_array( $attribute ) && !empty( $attribute ) ) {
 										$collectinfo = $attribute[0];
 									} else {
 										$collectinfo = $attribute;
@@ -548,7 +548,7 @@ class Clerk_Product_Sync {
 
 								}
 							}
-							if (!empty($child_atributes)) {
+							if (!empty($child_attributes)) {
 								$product_array[ 'child_' . strtolower( $this->clerk_friendly_attributes( $field ) ) . 's' ] = $child_attributes;
 							}
 						}
@@ -561,9 +561,9 @@ class Clerk_Product_Sync {
 								$collectinfo  = '';
 								$childproduct = wc_get_product( $child_id );
 
-								$attribute_field = wp_get_post_terms( $childproduct->get_id(), strtolower( $field ), array( 'fields' => 'names' ) );
+								$attribute = wp_get_post_terms( $childproduct->get_id(), strtolower( $field ), array( 'fields' => 'names' ) );
 
-								if ( is_array( $atribute ) && count( $atribute ) > 0 ) {
+								if ( is_array( $attribute ) && !empty( $attribute ) ) {
 									$collectinfo = $attribute[0];
 								} else {
 									$collectinfo = $attribute;
@@ -576,7 +576,7 @@ class Clerk_Product_Sync {
 									$child_attributes[] = $collectinfo;
 								}
 							}
-							if (!empty($child_atributes)) {
+							if (!empty($child_attributes)) {
 								$product_array[ 'child_' . strtolower( $this->clerk_friendly_attributes( $field ) ) . 's' ] = $child_attributes;
 							}
 						}
